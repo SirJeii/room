@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Cards</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .card-body .row {
+            align-items: center;
+        }
+        .card-body .col-auto {
+            flex: 1;
+        }
+        .instructor-option {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        .instructor-option:hover {
+            background-color: #f8f9fa;
+        }
+        .instructor-option.selected {
+            background-color: #007bff;
+            color: white;
+        }
+        .card.has-data {
+            background-color: #d4edda; /* Bootstrap's success color */
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-3">
+        <h1>Room Monitoring</h1>
+    </header>
+    
+    <main class="container mt-5">
+        <div class="text-right mb-3">
+            <button class="btn btn-secondary" onclick="saveData()">
+                <i class="fas fa-save"></i>
+            </button>
+            <button class="btn btn-info" onclick="showTable()">
+                <i class="fas fa-table"></i>
+            </button>
+        </div>
+        <div class="row">
+            <!-- Individual room cards -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Room 201</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Instructions: Select Instructor and Put Notes.</p>
+                        <div class="row">
+                            <div class="col-auto">
+                                <p><strong>Instructor:</strong> <span class="instructor-name"></span></p>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-primary" onclick="selectInstructor('Room 201', this)">
+                                    <i class="fas fa-user"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-auto">
+                                <p><strong>Date and Time:</strong> <span class="date-time"></span></p>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-auto">
+                                <p><strong>Notes:</strong> <span class="notes"></span></p>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-secondary" onclick="addNotes('Room 201', this)">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat similar structure for other rooms -->
+            <!-- Room 202 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Room 202</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Instructions: Select Instructor and Put Notes.</p>
+                        <div class="row">
+                            <div class="col-auto">
+                                <p><strong>Instructor:</strong> <span class="instructor-name"></span></p>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-primary" onclick="selectInstructor('Room 202', this)">
+                                    <i class="fas fa-user"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-auto">
+                                <p><strong>Date and Time:</strong> <span class="date-time"></span></p>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-auto">
+                                <p><strong>Notes:</strong> <span class="notes"></span></p>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-secondary" onclick="addNotes('Room 202', this)">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Room 203 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Room 203</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Instructions: Select Instructor and Put Notes.</p>
+                        <div class="row">
+                            <div class="col-auto">
+                                <p><strong>Instructor:</strong> <span class="instructor-name"></span></p>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-primary" onclick="selectInstructor('Room 203', this)">
+                                    <i class="fas fa-user"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-auto">
+                                <p><strong>Date and Time:</strong> <span class="date-time"></span></p>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-auto">
+                                <p><strong>Notes:</strong> <span class="notes"></span></p>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-secondary" onclick="addNotes('Room 203', this)">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>Room Monitoring System &copy; 2024</p>
+    </footer>
+
+    <!-- Instructor Modal -->
+    <div class="modal fade" id="instructorModal" tabindex="-1" role="dialog" aria-labelledby="instructorModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="instructorModalLabel">Select Instructor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modal-body-content">
+                    <!-- Instructor list will be injected here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitInstructorBtn">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notes Modal -->
+    <div class="modal fade" id="notesModal" tabindex="-1" role="dialog" aria-labelledby="notesModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notesModalLabel">Add Notes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <textarea id="notesTextarea" class="form-control" rows="4" placeholder="Enter notes here..."></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitNotesBtn">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Modal -->
+    <div class="modal fade" id="tableModal" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tableModalLabel">Saved Data Table</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-bordered" id="data-table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Room</th>
+                                <th>Instructor</th>
+                                <th>Date and Time</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Table rows will be injected here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="saveTableToPDF()">Save to PDF</button>
+                    <button type="button" class="btn btn-primary" onclick="sendEmail()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Font Awesome JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <!-- jsPDF and jsPDF AutoTable plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.14/jspdf.plugin.autotable.min.js"></script>
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("YOUR_EMAILJS_USER_ID"); // Replace with your EmailJS user ID
+        })();
+    </script>
+    <!-- Custom Script -->
+    <script>
+        const instructors = [
+            "No Instructor", "Dean Yulo F.", "Mr. Rubaya D.L", "Mr. Unabia T.", "Mr. Baysa F.J.P", "Mr. Agbayani A.",
+            "Mr. Agbisit. O. Jr.", "Mr. Alminar, A.", "Mr. Arnoco, B.", "Mr. Canulo, J.V", "Ms. Dominguez, R.K",
+            "Mr. Edquilag, E.N.P.", "Mr. Fajardo, A. M.", "Ms. Ibarolla, D.G.", "Ms. Ilustre, J.A", "Mr. Lopez G.",
+            "Ms. Lopez, N.", "Ms. Magnaye, E.", "Mr. Nicolas, J.M.", "Mr. Pascual, G.", "Mr. Rosqueta, W.M.",
+            "Mr. Saledio, M.D.", "Mr. Teleg, B.", "Mr. Udaundo, D.K", "Dr. Velarde, E.", "Ms. Gatbunton, A.J",
+            "Mr. Manliguis, R.E."
+        ];  
+
+        let selectedRoom = "";
+        let selectedCardElement = null;
+
+        function selectInstructor(room, buttonElement) {
+            selectedRoom = room;
+            selectedCardElement = buttonElement.closest('.card');
+            let modalBodyContent = document.getElementById('modal-body-content');
+            modalBodyContent.innerHTML = "";
+
+            instructors.forEach(instructor => {
+                let instructorOption = `<div class="instructor-option" onclick="chooseInstructor('${instructor}')">${instructor}</div>`;
+                modalBodyContent.innerHTML += instructorOption;
+            });
+
+            $('#instructorModal').modal('show');
+        }
+
+        function chooseInstructor(instructor) {
+            const selectedInstructorElement = document.querySelector('.instructor-option.selected');
+            if (selectedInstructorElement) {
+                selectedInstructorElement.classList.remove('selected');
+            }
+            const newSelectedInstructorElement = Array.from(document.querySelectorAll('.instructor-option')).find(el => el.textContent === instructor);
+            newSelectedInstructorElement.classList.add('selected');
+            document.getElementById('submitInstructorBtn').onclick = () => {
+                const submissionTime = new Date().toLocaleString();
+                const submissionData = {
+                    room: selectedRoom,
+                    instructor: instructor,
+                    dateTime: submissionTime
+                };
+
+                localStorage.setItem(`${selectedRoom}-instructorData`, JSON.stringify(submissionData));
+
+                selectedCardElement.querySelector('.instructor-name').innerText = submissionData.instructor;
+                selectedCardElement.querySelector('.date-time').innerText = submissionData.dateTime;
+
+                selectedCardElement.classList.add('has-data');
+
+                $('#instructorModal').modal('hide');
+            };
+        }
+
+        document.getElementById('submitInstructorBtn').addEventListener('click', () => {
+            const selectedInstructorElement = document.querySelector('.instructor-option.selected');
+            if (selectedInstructorElement) {
+                const instructor = selectedInstructorElement.textContent;
+                const submissionTime = new Date().toLocaleString();
+                const submissionData = {
+                    room: selectedRoom,
+                    instructor: instructor,
+                    dateTime: submissionTime
+                };
+
+                localStorage.setItem(`${selectedRoom}-instructorData`, JSON.stringify(submissionData));
+
+                selectedCardElement.querySelector('.instructor-name').innerText = submissionData.instructor;
+                selectedCardElement.querySelector('.date-time').innerText = submissionData.dateTime;
+
+                selectedCardElement.classList.add('has-data');
+
+                $('#instructorModal').modal('hide');
+            } else {
+                alert('Please select an instructor.');
+            }
+        });
+
+        function addNotes(room, buttonElement) {
+            selectedRoom = room;
+            selectedCardElement = buttonElement.closest('.card');
+            $('#notesModal').modal('show');
+        }
+
+        document.getElementById('submitNotesBtn').addEventListener('click', () => {
+            const notes = document.getElementById('notesTextarea').value;
+            if (notes) {
+                const notesData = {
+                    room: selectedRoom,
+                    notes: notes
+                };
+
+                localStorage.setItem(`${selectedRoom}-notesData`, JSON.stringify(notesData));
+
+                selectedCardElement.querySelector('.notes').innerText = notesData.notes;
+
+                selectedCardElement.classList.add('has-data');
+
+                $('#notesModal').modal('hide');
+            } else {
+                alert('Please enter some notes.');
+            }
+        });
+
+        function saveData() {
+            const rooms = document.querySelectorAll('.card');
+            rooms.forEach(room => {
+                const roomNumber = room.querySelector('.card-title').innerText;
+                const instructorName = room.querySelector('.instructor-name').innerText;
+                const dateTime = room.querySelector('.date-time').innerText;
+                const notes = room.querySelector('.notes').innerText;
+
+                if (instructorName && dateTime && notes) {
+                    const submissionData = {
+                        room: roomNumber,
+                        instructor: instructorName,
+                        dateTime: dateTime,
+                        notes: notes
+                    };
+
+                    localStorage.setItem(`${roomNumber}-data`, JSON.stringify(submissionData));
+
+                    // Reset card data
+                    room.querySelector('.instructor-name').innerText = '';
+                    room.querySelector('.date-time').innerText = '';
+                    room.querySelector('.notes').innerText = '';
+                    room.classList.remove('has-data');
+                }
+            });
+
+            alert('Data saved and reset successfully!');
+        }
+
+        function showTable() {
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
+
+            const rooms = ['Room 201', 'Room 202', 'Room 203'];
+            rooms.forEach(room => {
+                const savedData = JSON.parse(localStorage.getItem(`${room}-data`));
+                if (savedData && savedData.instructor && savedData.dateTime && savedData.notes) {
+                    const row = `<tr>
+                        <td>${savedData.room}</td>
+                        <td>${savedData.instructor}</td>
+                        <td>${savedData.dateTime}</td>
+                        <td>${savedData.notes}</td>
+                    </tr>`;
+                    tableBody.innerHTML += row;
+
+                    // Remove the old data after displaying
+                    localStorage.removeItem(`${room}-data`);
+                }
+            });
+
+            $('#tableModal').modal('show');
+        }
+
+        function saveTableToPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.autoTable({
+                html: '#data-table',
+                headStyles: { fillColor: [0, 0, 0] }
+            });
+            
+            doc.save('room-report.pdf');
+        }
+
+        function sendEmail() {
+            const tableBody = document.getElementById('tableBody');
+            let tableHTML = '<table border="1"><tr><th>Room</th><th>Instructor</th><th>Date and Time</th><th>Notes</th></tr>';
+            tableBody.querySelectorAll('tr').forEach(row => {
+                tableHTML += `<tr>${row.innerHTML}</tr>`;
+            });
+            tableHTML += '</table>';
+
+            const emailParams = {
+                to_email: 'arjayagbayani38@gmail.com', // Replace with recipient email
+                subject: 'Room Monitoring Report',
+                message_html: tableHTML
+            };
+
+            emailjs.send('service_rfrczqq', 'template_thu60ti', emailParams)
+                .then(response => {
+                    alert('Email sent successfully!');
+                }, error => {
+                    alert('Failed to send email. Please try again.');
+                });
+        }
+
+        // Initialize card colors based on existing data
+        document.addEventListener('DOMContentLoaded', () => {
+            const rooms = document.querySelectorAll('.card');
+            rooms.forEach(room => {
+                const roomNumber = room.querySelector('.card-title').innerText;
+                const savedData = JSON.parse(localStorage.getItem(`${roomNumber}-data`));
+                if (savedData && savedData.instructor && savedData.dateTime && savedData.notes) {
+                    room.classList.add('has-data');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
